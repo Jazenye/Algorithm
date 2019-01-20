@@ -41,10 +41,12 @@
 vector<int> a ;            //声明一个int型向量a
 vector<int> a(10, 1) ;     //声明一个初始大小为10且初始值都为1的向量（初始值可省略）
 vector<int> b(a.begin(), a.begin()+3) ;   //将a向量中从第0个到第2个(共3个)作为向量b的初始值
+vector<student> a[4];     //声明一个结构体student类型的4维向量a （类似二维数组
 
 a.size()                 //获取向量中的元素个数
 a.empty()                //判断向量是否为空
 a.clear()                //清空向量中的元素
+a.push_back(i)           //压入与容器a同类型的元素i
 ```
 
 
@@ -64,3 +66,42 @@ a.clear()                //清空向量中的元素
   - 声明： `stack<string> v;`  string可以换成其它的type
   - 入栈：`v.push(s);`   、 出栈：`v.pop();`  、栈顶元素：`v.top()`
   - 注意：无法直接输出弹出的栈顶元素
+
+
+
+### Q1012
+
+- `#include <math.h>`
+
+- 次方运算 `pow(a, b);` -> a^b
+
+- C语言强制类型转换： （带转换类型）变量a
+
+- 结束本次循环` continue;`
+
+- 输出保留一位小数`printf("%.1f", tmp);`
+
+- 判断是否为素数
+
+  ```
+  bool isprime(int a) {
+      for (int i = 2; i * i <= a; i++)
+          if (a % i == 0) return false;
+      return true;
+  }
+  ```
+
+
+
+
+
+#### Q1019
+
+- ```c++
+  string s;
+  s.insert(0, 2, a);
+  // 即在下标为0 的地方 插入 2 个字符 a
+  ```
+
+- 数字字符串转换为int: `stoi(str)` (string to int )
+
