@@ -17,7 +17,7 @@ learning notes about DS and Algorithm.
 
 ## PAT
 
-记录了甲级与乙级的代码，问题列表、难点、题目理解记录在 Question List.md 中，而涉及的部分方法则在 function.md 中。代码中有思路及注释。
+记录了甲级与乙级的代码，问题列表、难点、题目理解记录在 Question List.md 中，而涉及的部分方法则在 function.md 中。代码中有思路及注释。部分笔记来源于《算法笔记》 —  胡凡主编。
 
 [练习地址](https://www.patest.cn/practice)
 
