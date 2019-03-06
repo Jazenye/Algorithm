@@ -59,7 +59,7 @@
 
   - `getchar()`与`putchar()`可以获取或输出一个字符。可获取换行符
 
-  - `sscanf(str, "%d", &n)` 与 `sprintf(str, "%d", n);`：第一个s可以理解为string，用处是把str中的内容以%d的格式写到n中（从左往右），从一个字符串中读进与指定格式相符的数据。`sprintf`则是把n以%d的格式写到str中（从右往左），字符串格式化命令，把格式化的数据写入某个字符串中。 str为字符型数组（`char str[N];`）。
+  - `sscanf(str, "%d", &n)` 与 `sprintf(str, "%d", n);`：第一个s可以理解为string，用处是把str中的内容以%d的格式写到n中（从左往右），从一个字符串中读进与指定格式相符的数据。`sprintf`则是把n以%d的格式写到str中（从右往左），字符串格式化命令，把格式化的数据写入某个字符串中。 str为字符型数组（`char str[N];`）。（在头文件`#include <stdio.h>` 中， 使用时 可先建立一个字符数组+scanf+%s 接收输入的字符串再用该方法导入）
 
     ```c++
     str = "china beijing 123";
@@ -73,14 +73,12 @@
     */
     ```
 
-    
-
 - **输出**保留一位小数`printf("%.1f", tmp);`
 
   - 输出百分号%或斜杠 \ 则需将字符重复一次：`printf("%%  \\");`
 
   - `%md`与`%0md` 不足m位的int型变量以m位进行右对齐输出，其中高位用空格或者0补齐：如`%05d`， 不足5位的整数前面用0补齐
-  - 浮点数尽量使用double类型而float，double 类型输入/输出：`scanf("%lf, &d");`/`printf("%f", d);`  
+  - 浮点数尽量使用double类型而非float，double 类型输入/输出：`scanf("%lf, &d");`/`printf("%f", d);`  
 
 - **判断是否为素数**
 
@@ -121,7 +119,7 @@
   - `stod` 若最前面是小数点，自动转换后会补上0
   - 类似的还有`stof`  \ `stold` \ `stolld`
   - **数字 字符 转为int类型**：`a - '0'`
-- 返回字符串长度: `s.length()`、`strlen(s)`、`s.size()`
+- 返回字符串长度: `s.length()`、`strlen(s)`、`s.size()`。 `strlen`也可范围字符数组的长度
 - 用 cin 读入字符串时，以空格为分隔符，若想**读入整行字符串**需用 `getline(cin, str);`
 - 字符串拼接与比较：
 
@@ -189,7 +187,7 @@ for(vector<int>::iterator it = v.begin(); it != v.end(); it++)
 - 二维数组
 
 ```c++
-vector<vector<int> > v(10, vector<int>(5));        //创建一个10*5的int型二维向量
+vector<vector<int> > v(10, vector<int>(5, 100));        //创建一个10*5的int型二维向量,并且初始化为100（此参数可省略）
 // 注意就是把一维中的typename(int) 换成了vector<int>，两个 >> 之间应有空格
 v.size();  // 返回v的行数，10
 v[0].size();  // 返回v的列数， 5
@@ -267,6 +265,7 @@ cout << m.rbegin()->first << " " << m.rbegin()->second << endl;
 - 用途：
   - 建立字符串（字符）到整数之间的映射
   - 将大整数或其他类型数据是否存在的题目可将map作为Bool数组使用
+  - map对值的排序不太方便，不会的话还是用结构体来替代吧
 - `#include <unordered_map>` 与 `#include <unordered_set>`  
   `unordered_map`和` map `（或者 `unordered_set` 和 `set` ）的区别： `map` 会按照键值对的键 key 进行排序（` set` 里面会按照集合中的元素大小进行升序排列）；而 `unordered_map` （或
   者 `unordered_set` ）省去了这个排序的过程。
