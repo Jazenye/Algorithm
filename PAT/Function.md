@@ -16,17 +16,19 @@
 
 - C++中头⽂件一般是没有像C语言的` .h` 这样的扩展后缀，C语⾔里面的头文件去掉` .h `然后在前⾯面加个 c 就可以继续在C++文件中使用C语言头文件中的函数。`#include <cmath>`
 
+- 位运算： 异或 `^` 相同出0，相异出1；
+
 - `#include <math.h>`
 
   - 次方运算： `pow(a, b);` -> a^b
   - 开平方根：`double db = sqrt(2.0);`
   - 还可以取log（单参数以自然数为底，若想以其它数为底需要换底公式）、用三角函数（sin\cos\tan）、反三角（asin\acos\atan）。圆周率 π = acos(-1.0);
   - 取绝对值：`fabs(d);`  -> |d|
-  - **四舍五入**的技巧：`(int)(s+0.5);`  \  `n = (n+0.5*f) / f;`
+  - **四舍五入**的技巧：`(int)(s+0.5);`  \  `n = (n+0.5*f) / f;` 先把分子转为double型，然后再+0.5后取int
     - `double db = round(3.40);`
   - double型 向上取整、向下取整：`floor()` \ `ceil()`
 
-- 头文件：`#include <ctype.h>`   // 若是c++中则写为 cctype
+- 头文件：`#include <ctype.h>`   // 若是c++中则写为`cctype`
 
   - 转换为大（小）写字母：`toupper(c);`   、`tolower(c);`
   - 判断是否是字母、大写、小写、大小写+数字：`isalpha、islower、isupper、isalnum`
@@ -112,21 +114,37 @@
 ### 字符串 String
 
 - 部分需要头文件 `#include <string>` （注意，与`#include <string.h>`不同）
+
 - **访问**时可以按照 字符数组 的方式访问字符串中的字符。也可以使用迭代器`string::iterator it`来访问 ）
+
+- **初始化**：
+
+  ```c++
+  string s1("abc");  // 等价于 string s1 = "abc";
+  string s2 = s1;
+  string s3(3, 'a');  // 初始化为3个a的字符串
+  ```
+
 - 数字转字符： `to_string()`
+
 - 字符串转数字(string to int、string to double )：  `stoi(str)；`  \ `stod(str);`
   - 如果是浮点型使用`stoi` 会自动截取最前面的数字直到非数字为止；若开头就不是数字则会发生错误
   - `stod` 若最前面是小数点，自动转换后会补上0
   - 类似的还有`stof`  \ `stold` \ `stolld`
-  - **数字 字符 转为int类型**：`a - '0'`
+  - **数字 字符 转为int类型**：`a - '0'`   //  10以内int转为字符： `num + '0';`
+
 - 返回字符串长度: `s.length()`、`strlen(s)`、`s.size()`。 `strlen`也可范围字符数组的长度
+
 - 用 cin 读入字符串时，以空格为分隔符，若想**读入整行字符串**需用 `getline(cin, str);`
+
 - 字符串拼接与比较：
 
-  - `s = s1 + s2; `    // 直接相加即可
+  - `s = s1 + s2; `    // 直接相加即可，注意**相加顺序会影响拼接顺序**
   - 末尾添加制定个数字符：`str.append(len, ch);`  在字符串str的末尾添加len个长度的ch
-  - 插入insert  ：`s.insert(0, str);`，即在下标为0 的地方 插入字符串str
+  - 插入**insert**  ：`s.insert(0, str);`，即在下标为0 的地方 插入字符串str
+    - `s.insert(pos, n, c);` 在pos的位置插入n个字符c
   - C++中可以直接使用运算符进行**字符串比较**，比较的是字典序：`if(str1 != str2) `，还有>、>=等系列运算符
+
 - 字符串替换与截取：
   - 删除字符：`str.erase(pos, n);`   pos代表删除的起始位置，参数n 表示从pos开始删除n个字符。若省略n则一直删除到末尾。 单个位置也可以使用迭代器来指定，如`str.begin()+i`
   - 替换字符：`str.replace(pos, len, str2);`  从pos位置开始的len个字符替换成str2
@@ -262,6 +280,10 @@ for (auto it = m.begin(); it != m.end(); it++)
   
 // 访问map的最后一个元素，输出它的键和值
 cout << m.rbegin()->first << " " << m.rbegin()->second << endl;
+
+// map的逆序遍历,rbegin、rend
+for (auto it = m.rbegin(); it != m.rend(); it++) 
+  	cout << it->first << " " << it->second << endl;
 ```
 
 - 用途：
@@ -300,7 +322,7 @@ cout << m.rbegin()->first << " " << m.rbegin()->second << endl;
 ### STL 之 algorithm（算法）
 
 - 使用头文件 `#include <algorithm>`
-- `reverse`函数可以实现将一个数组或者vector中元素倒置，参数为数组的起始地址和结束地址
+- `reverse`函数可以实现将一个数组或者vector中元素倒置，参数为数组的起始地址和结束地址。也可以用来逆转字符串，但要注意的是它没有返回值，是直接对输入的字符串进行操作。
 - `sort（start，end, cmp); `默认是升序排列，若是要降序则要自定义规则.（自定义规则方法参见Algorithm/cskaoyan/ 1.1.cpp）
 - `max(a, b)` \ `min(a, b)`： 返回两个参数值中的较大值/较小值。若想比较三个数，可以嵌套使用`max(a, max(b, c))`
 - `swap(a, b);`：交换两个变量的值
@@ -333,7 +355,20 @@ cout << m.rbegin()->first << " " << m.rbegin()->second << endl;
   }
   ```
 
-- 
+- 十以内进制加法
+
+  ```c++
+  // mod 即为要求的进制数, s1\s2 即为相加的字符串
+  // string ans, 用来存储结果, carry存储进位
+  // 最后直接输出ans即为答案
+  for(int i = s.length() - 1; i >= 0; i--) {
+  	ans[i] = (s1[i] - '0' + s2[i] - '0' + carry) % mod + '0';
+  	carry = (s1[i] - '0' + s2[i] - '0' + carry) / mod;
+  }
+  if (carry != 0) ans = '1' + ans;
+  ```
+
+  
 
 
 
