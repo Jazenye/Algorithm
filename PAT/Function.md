@@ -12,6 +12,10 @@
 
 
 
+在解题时应首先考虑使用哪种存储容器及格式，map、se、vector（一维、二维）、string、struct等
+
+
+
 ### 语言基础用法
 
 - C++中头⽂件一般是没有像C语言的` .h` 这样的扩展后缀，C语⾔里面的头文件去掉` .h `然后在前⾯面加个 c 就可以继续在C++文件中使用C语言头文件中的函数。`#include <cmath>`
@@ -31,7 +35,7 @@
 - 头文件：`#include <ctype.h>`   // 若是c++中则写为`cctype`
 
   - 转换为大（小）写字母：`toupper(c);`   、`tolower(c);`
-  - 判断是否是字母、大写、小写、大小写+数字：`isalpha、islower、isupper、isalnum`
+  - 判断是否是字母、大写、小写、大小写+数字、数字：`isalpha、islower、isupper、isalnum`、`isdigit`
   - 手动方法： 大写转小写 ` c = c + 32;` （记住小写字母的ASCII码比大写字母大32，且数字字符也有ASCII码）
 
 - C语言**强制类型转换**： （待转换类型）变量a    `(int)a;`
@@ -61,6 +65,14 @@
 
   - `getchar()`与`putchar()`可以获取或输出一个字符。可获取换行符
 
+  - C语言输入字符串：
+
+    ```c++
+    string s1;
+    s1.resize(21); // 要求比输入的长度开的要大 否则会被裁去
+    scanf("%s", &s1.[0]);
+    ```
+
   - `sscanf(str, "%d", &n)` 与 `sprintf(str, "%d", n);`：第一个s可以理解为string，用处是把str中的内容以%d的格式写到n中（从左往右），从一个字符串中读进与指定格式相符的数据。`sprintf`则是把n以%d的格式写到str中（从右往左），字符串格式化命令，把格式化的数据写入某个字符串中。 str为字符型数组（`char str[N];`）。（在头文件`#include <stdio.h>` 中， 使用时 可先建立一个字符数组+scanf+%s 接收输入的字符串再用该方法导入）
 
     ```c++
@@ -78,9 +90,10 @@
 - **输出**保留一位小数`printf("%.1f", tmp);`
 
   - 输出百分号%或斜杠 \ 则需将字符重复一次：`printf("%%  \\");`
-
   - `%md`与`%0md` 不足m位的int型变量以m位进行右对齐输出，其中高位用空格或者0补齐：如`%05d`， 不足5位的整数前面用0补齐
   - 浮点数尽量使用double类型而非float，double 类型输入/输出：`scanf("%lf, &d");`/`printf("%f", d);`  
+  - 用C语言输出`string`类型的字符串，设字符串为s，调用函数`c_str()`：`printf("%s", s.c_str());`
+    - 用C语言输入的string类型字符，似乎无法使用`==`来判断字符是否相等（存疑）。所以最好引入头文件`#include <ctring>` 中的`strcmp(str1, str2);`来判断（== 0时代表两个字符串相等）,这个函数的参数应当是char类型，故要使用string的成员函数，`c_str()`来当参数使用：即`if(strcmp(s1.c_str(), s2.c_str()) == 0)`
 
 - **判断是否为素数**
 
@@ -195,6 +208,7 @@ a.erase(a.begin(), a.begin()+2); //若省略后一参数即删除单个元素，
 a.insert(a.begin()+1, -1); //在a[1]处插入-1
 a.push_back(i)    //在vector a 的末尾添加一个元素i，未指定大小时可以配合它当栈用
 a.pop_back(i)            // 删除vector中的尾元素
+a.push_back(stu{name, score});  // 压入一个stu类型的结构体，并且传入初始化的值
     
 a.begin()； // 取的是a的首元素地址
 a.end()；  // 取的是尾元素地址的下一个地址
@@ -263,6 +277,7 @@ st.erase(it, st.end());
   - 可以使用`hash`的方式来**查找**：`int num = count['a'];`  ->  num = 1
 
     - 还可以用`m.find(key) != m.end(); `来**查询**某个**键值**是否存在
+    - 或者使用`m.count(key) == 1;`，这个count方法返回值仅是0和1，分别代表不存在和存在
 
   - `mapStudent.size() ` 返回**元素个数**
 
