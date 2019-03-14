@@ -40,6 +40,8 @@
 
 - C语言**强制类型转换**： （待转换类型）变量a    `(int)a;`
 
+  - 如果是int类型的运算，想转为double，在分母乘个1.0即可：`double c = a * 1.0 / c;`
+
 - 三目运算符，若A为真则执行并返回B的结果，否则执行并返回C的：`A ? B : C;`
 
   ```
@@ -270,6 +272,8 @@ st.erase(it, st.end());
     map<int, int> ary;  //  与数组相似。
     map<char,int> count;  //设置一个名为count的map容器它关键字类型为char,对应hash值的类型为int。
     map<set<int>, string> mp; // 将一个set容器映射到一个字符串
+    map<int, vector<int>> mp; // 将一个int值映射到一个int类型的vector中
+    // 则mp[1]就是一个vector容器,操作即为 mp[i].push_back(j);
     ```
 
   - 还可以用`array`的方式**插入**：`count['a'] = 1;` ,  
@@ -278,6 +282,7 @@ st.erase(it, st.end());
 
     - 还可以用`m.find(key) != m.end(); `来**查询**某个**键值**是否存在
     - 或者使用`m.count(key) == 1;`，这个count方法返回值仅是0和1，分别代表不存在和存在
+    - 以上两个方法时间复杂度在`O(nlogn)`左右
 
   - `mapStudent.size() ` 返回**元素个数**
 
