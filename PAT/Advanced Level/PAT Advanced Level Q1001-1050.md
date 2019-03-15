@@ -1,3 +1,33 @@
+PAT advanced level 没有固定的几题一组，难度比basic要高但也分为三个等级，分别为：20分、25分、30分。
+
+
+
+#### 1001 A+B Format （20 分)[字符串处理]
+
+Calculate *a*+*b* and output the sum in standard format -- that is, the digits must be separated into groups of three by commas (unless there are less than four digits).
+
+- Input Specification:
+
+Each input file contains one test case. Each case contains a pair of integers *a* and *b* where −10^6≤*a*,*b*≤10^6. The numbers are separated by a space.
+
+- Output Specification:
+
+For each test case, you should output the sum of *a* and *b* in one line. The sum must be written in the standard format.
+
+- Sample Input:
+
+```in
+-1000000 9
+```
+
+- Sample Output:
+
+```out
+-999,991
+```
+
+
+
 #### 1002 A+B for Polynomials （25 分）
 
 This time, you are supposed to find *A*+*B* where *A* and *B* are two polynomials.
