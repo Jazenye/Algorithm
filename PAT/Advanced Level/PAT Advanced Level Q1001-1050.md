@@ -26,9 +26,14 @@ For each test case, you should output the sum of *a* and *b* in one line. The su
 -999,991
 ```
 
+- My idea： 先对字符串进行处理，判断位数能否被3整除后插入（insert）逗号，其中使用cnt来记录插入个数并纠正判断的位数
+- 大神做法：逐个字符输出，位置正确的地方直接插入输入一个逗号
 
 
-#### 1002 A+B for Polynomials （25 分）
+
+
+
+#### 1002 A+B for Polynomials （25 分）[模拟]
 
 This time, you are supposed to find *A*+*B* where *A* and *B* are two polynomials.
 
@@ -38,7 +43,7 @@ Each input file contains one test case. Each case occupies 2 lines, and each lin
 
  K N 1 aN1 N2 aN2 ... NK aNK
 
-where *K* is the number of nonzero terms in the polynomial, *Ni* and *a**N**i* (*i*=1,2,⋯,*K*) are the exponents and coefficients, respectively. It is given that 1≤*K*≤10，0≤*N**K*<⋯<*N*2<*N*1≤1000.
+where *K* is the number of nonzero terms in the polynomial, *Ni* and *a**N**i* (*i*=1,2,⋯,*K*) are the exponents and coefficients, respectively. It is given that 1≤*K*≤10，0≤*NK*<⋯<*N*2<*N*1≤1000.
 
 - Output Specification:
 
@@ -55,6 +60,44 @@ For each test case you should output the sum of *A* and *B* in one line, with th
 
 ```out
 3 2 1.5 1 2.9 0 3.2
+```
+
+- 模拟的内容是两个多项式相加，最后输出项数、各项的指数和系数。
+- 注意：1、要精确到小数点后一位；2、系数可能为零；3、有些在数组或map中记录的系数可能为0，若用size等方法来计算长度时会偏大
+
+
+
+
+
+#### 1003 Emergency （25 分)[Dijkstra算法]
+
+As an emergency rescue team leader of a city, you are given a special map of your country. The map shows several scattered cities connected by some roads. Amount of rescue teams in each city and the length of each road between any pair of cities are marked on the map. When there is an emergency call to you from some other city, your job is to lead your men to the place as quickly as possible, and at the mean time, call up as many hands on the way as possible.
+
+- Input Specification:
+
+Each input file contains one test case. For each test case, the first line contains 4 positive integers: *N* (≤500) - the number of cities (and the cities are numbered from 0 to *N*−1), *M* - the number of roads, *C*1 and *C*2 - the cities that you are currently in and that you must save, respectively. The next line contains *N* integers, where the *i*-th integer is the number of rescue teams in the *i*-th city. Then *M* lines follow, each describes a road with three integers *c*1, *c*2 and *L*, which are the pair of cities connected by a road and the length of that road, respectively. It is guaranteed that there exists at least one path from *C*1 to *C*2.
+
+- Output Specification:
+
+For each test case, print in one line two numbers: the number of different shortest paths between *C*1 and *C*2, and the maximum amount of rescue teams you can possibly gather. All the numbers in a line must be separated by exactly one space, and there is no extra space allowed at the end of a line.
+
+- Sample Input:
+
+```in
+5 6 0 2
+1 2 1 5 3
+0 1 1
+0 2 2
+0 3 1
+1 2 1
+2 4 1
+3 4 1
+```
+
+- Sample Output:
+
+```out
+2 4
 ```
 
 
